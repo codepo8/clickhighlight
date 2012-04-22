@@ -10,53 +10,66 @@ clickhighlight = function() {
     nohighlight: 'nohighlight'
   };
   var styles = {
-    dimension: '100px',
+    size: '100px',
     duration:  '1s',
     colour:    'rgba( 255, 10, 10, 0.7 )'
   };
   function init( o ) {
     if ( plot ) { plot.parentNode.removeChild(plot); }
-    if ( o && o.dimension ) { styles.dimension = o.dimension; }
-    if ( o && o.duration ) { styles.duration = o.duration; }
-    if ( o && o.colour ) { styles.colour = o.colour; }
-    if ( o && o.nohighlight ) { classes.nohighlight  = o.nohighlight; }
-    
+    if ( o ) {
+      if ( o && o.size ) { styles.size = o.size; }
+      if ( o && o.duration ) { styles.duration = o.duration; }
+      if ( o && o.colour ) { styles.colour = o.colour; }
+      if ( o && o.nohighlight ) { classes.nohighlight  = o.nohighlight; }
+    }
     var plot = document.createElement( 'div' ),
         pressed = false,
-        offset = parseInt( styles.dimension, 10 ) / 2;
+        offset = parseInt( styles.size, 10 ) / 2;
         prefix = getprefix( plot );
+
     if ( prefix !== null ) {
-      plot.style.borderRadius = styles.dimension;
+      plot.style.borderRadius = styles.size;
       plot.style.background = styles.colour;
       plot.style.pointerEvents = 'none';
-      plot.style.width = styles.dimension;
-      plot.style.height = styles.dimension;
+      plot.style.width = styles.size;
+      plot.style.height = styles.size;
       plot.style.position = 'absolute';
+      plot.style[ prefix + 'Transform' ] = 'scale( 0, 0 )';
       plot.style[ prefix + 'Transition' ] = '-' + prefix.toLowerCase() + '-' +
                                             'transform ' + styles.duration;
-      plot.style[ prefix + 'Transform' ] = 'scale( 0, 0 )';
       document.body.appendChild( plot );
-      document.addEventListener( 'mousedown', function( ev ) {
+
+      function down( ev ) {
         var t = ev.target.classList; 
         if ( !t.contains( classes.nohighlight ) ) {
           pressed = true;
-          moveplot( ev.pageX, ev.pageY );
+          move( ev );
           plot.style[ prefix + 'Transform' ] = 'scale( 1, 1 )';
         }
-      }, false );
-      document.addEventListener( 'mouseup', function( ev ) {
+      };
+
+      function up( ev ) {
         pressed = false;
         plot.style[ prefix + 'Transform' ] = 'scale( 0, 0 )';
-      },  false );
-      document.addEventListener( 'mousemove', function( ev ) {
-        if ( pressed ) { moveplot( ev.pageX, ev.pageY ); }
-      }, false );  
-      function moveplot( x, y ) {
-        plot.style.left = x - offset + 'px';
-        plot.style.top = y - offset + 'px';
-      }
+      };
+
+      function move( ev ) {
+        if ( pressed ) { 
+          var x =  ev.pageX, 
+              y = ev.pageY;
+          plot.style.left = x - offset + 'px';
+          plot.style.top = y - offset + 'px';
+        }
+      };
+
+      document.addEventListener( 'mousedown', down , false );
+      document.addEventListener( 'mouseup', up , false );
+      document.addEventListener( 'mousemove', move, false );  
+      document.addEventListener( 'touchstart', down , false );
+      document.addEventListener( 'touchend', up , false );
+      document.addEventListener( 'touchmove', move, false );  
     }
-  }
+  };
   function getprefix(elm) {
     var prefixes = [ 'Moz', 'Webkit', 'Khtml', 'O', 'ms', '' ],
         all = prefixes.length,
@@ -68,6 +81,7 @@ clickhighlight = function() {
       }
     }
     return prefix;
-  }
+  };
+
   return { init:init };
 }();
