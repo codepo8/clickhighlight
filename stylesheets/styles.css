@@ -296,7 +296,7 @@ box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
 
 #framework {position: relative;}
 #framework.logo:after { 
-  content: url('faux-tabzilla.png');
+  content: url('http://icant.co.uk/talks/css/faux-tabzilla.png');
   position: absolute;
   top: -72px; 
   right: 0px;   
