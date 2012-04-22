@@ -1,51 +1,170 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Clickhighlight by codepo8</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
+    <meta charset="utf-8"/>
+    <title>Measuring speed</title>
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <link rel="stylesheet" type="text/css" media="all" href="http://icant.co.uk/talks/css/screen.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+    <style type="text/css">
+      pre{
+        padding: 10px;
+        background: #333;
+        color: #ccc;
+        margin-bottom: 16px;
+      }
+      pre strong{
+        color: #fff;
+        font-weight: normal;
+      }
+    </style>
   </head>
-  <body>
+  <body lang="en" class="highlightclicks">
+    <div id="framework" class="logo">
+      
+      <a name="top"></a>
+      <header>
+      <h1 class="large mozilla-red gutter-bottom-16">Click highlighting</h1>
+      <h2 class="gutter-bottom-24">with CSS transitions</h2>
+      <p class="gutter-bottom-48">This is an experiment that uses <a href="https://developer.mozilla.org/en/css/css_transitions" class="nohighlight">CSS transitions</a> to simulate a "you are here" state of clicks to use in presentations and tutorials.</p>
+      <nav><ul id="menu">
+        <li class="menuItem"><a href="#example"  class="nohighlight">Example/Usage</a></li>
+        <li class="menuItem"><a href="#customising" class="nohighlight">Customising</a></li>
+        <li class="menuItem"><a href="#dependencies" class="nohighlight">Dependencies</a></li>
+        <li class="menuItem"><a href="#download" class="nohighlight">Download</a></li>
+        <li class="menuItem"><a href="#more" class="nohighlight">More info</a></li>
+        <li class="menuItem"><a href="#license"class="nohighlight">License</a></li>
+      </ul></nav>
+      </header>
 
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/codepo8/clickhighlight">Fork On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/codepo8/clickhighlight/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/codepo8/clickhighlight/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+      <section id="example"><div class="row">
+        <header><h3 class="gutter-bottom-24">Example</h3></header>
+        <p>This page is already the example for the effect. Click anywhere to see a red dot grow from where you clicked. The dot stays until you release the mouse. All you need to do is include <code>clickhighlight.js</code> and call its <code>init()</code> method.</p>
+        <pre><code>&lt;script src=&quot;clickhighlight.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;<strong>clickhighlight.init();</strong>&lt;/script&gt;</code></pre>
+      <p>Browsers that do not support CSS transitions will not get any effect but won't break or throw errors either.</p>
+      </div></section>
 
-    <div class="wrapper">
+      <section id="customising"><div class="row">
+        <header><h3 class="gutter-bottom-24">Customising</h3></header>
+        <p>There way to customise the look and feel of the effect is to send parameters when intialising:</p>
+<pre><code>clickhighlight.init({
+  dimension:   '300px', // the maximum size of the dot
+  duration:    '2s',    // the duration of the effect in seconds 
+  colour:      'green', // the colour of the dot - use RGBA for transparency 
+  nohighlight: 'notme'  // the class name to apply to elements not highlighted
+});</code></pre>
+      <p>As you can see there is a class name you can apply to elements you don't want the highlight effect to be applied to. By default, adding a <code>nohighlight</code> class to an element will make sure the effect does not happen (as shown in the links on this page). By default, the highlight effect does not interfere with click events. However on IE and Opera you need to set this class as they don't support <a href="https://developer.mozilla.org/en/CSS/pointer-events">CSS pointer events</a> like Webkit and Gecko.</p>
+      </div></section>
 
-      <section>
-        <div id="title">
-          <h1>Clickhighlight</h1>
-          <p>Using CSS transitions to create click highlights on pages for tutorials</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/codepo8">codepo8</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
-        </div>
+      <section id="dependencies"><div class="row">
+        <header><h3 class="gutter-bottom-24">Dependencies</h3></header>
+        <p>The effect is driven by CSS transitions. If your browser does not support them then there will not be any effect as the script uses feature detection. If you are looking for a jQuery solution with support for older browsers, check <a href="http://www.fluidbyte.net/clickecho-jquery-plugin">ClickEcho</a>.</p>
+      </div></section>
 
-        <h1>clickhighlight</h1>
+      <section id="download"><div class="row">
+        <header><h3 class="gutter-bottom-24">Download</h3></header>
+        
+        <li class="fork"><a href="https://github.com/codepo8/clickhighlight">Fork On GitHub</a></li>
+        <li class="downloads"><a href="https://github.com/codepo8/clickhighlight/zipball/master">ZIP</a></li>
+        <li class="downloads"><a href="https://github.com/codepo8/clickhighlight/tarball/master">TAR</a></li>
+        
+        
+        <p>This page is already the example for the effect. Click anywhere to see a red dot grow from where you clicked. The dot stays until you release the mouse. All you need to do is include <code>clickhighlight.js</code> and call its <code>init()</code> method.</p>
+        <pre><code>&lt;script src=&quot;clickhighlight.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;<strong>clickhighlight.init();</strong>&lt;/script&gt;</code></pre>
+      </div></section>
 
-<p>Using CSS transitions to create click highlights on pages for tutorials</p>
-      </section>
+      <section id="moreinfo"><div class="row">
+        <header><h3 class="gutter-bottom-24">More information</h3></header>
+        <p>This page is already the example for the effect. Click anywhere to see a red dot grow from where you clicked. The dot stays until you release the mouse. All you need to do is include <code>clickhighlight.js</code> and call its <code>init()</code> method.</p>
+        <pre><code>&lt;script src=&quot;clickhighlight.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;<strong>clickhighlight.init();</strong>&lt;/script&gt;</code></pre>
+      </div></section>
 
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+      <section id="license"><div class="row">
+        <header><h3 class="gutter-bottom-24">License</h3></header>
+        <p>This page is already the example for the effect. Click anywhere to see a red dot grow from where you clicked. The dot stays until you release the mouse. All you need to do is include <code>clickhighlight.js</code> and call its <code>init()</code> method.</p>
+        <pre><code>&lt;script src=&quot;clickhighlight.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;<strong>clickhighlight.init();</strong>&lt;/script&gt;</code></pre>
+      </div></section>
+
+
+    </div>    
+<script>
+clickhighlight = function() {
+  var classes = {
+    nohighlight: 'nohighlight'
+  };
+  var styles = {
+    dimension: '100px',
+    duration:  '1s',
+    colour:    'rgba( 255, 10, 10, 0.7 )'
+  };
+  function init( o ) {
+    if ( plot ) { plot.parentNode.removeChild(plot); }
+    if ( o && o.dimension ) { styles.dimension = o.dimension; }
+    if ( o && o.duration ) { styles.duration = o.duration; }
+    if ( o && o.colour ) { styles.colour = o.colour; }
+    if ( o && o.nohighlight ) { classes.nohighlight  = o.nohighlight; }
     
+    var plot = document.createElement( 'div' ),
+        pressed = false,
+        offset = parseInt( styles.dimension, 10 ) / 2;
+        prefix = getprefix( plot );
+    if ( prefix !== null ) {
+      plot.style.borderRadius = styles.dimension;
+      plot.style.background = styles.colour;
+      plot.style.pointerEvents = 'none';
+      plot.style.width = styles.dimension;
+      plot.style.height = styles.dimension;
+      plot.style.position = 'absolute';
+      plot.style[ prefix + 'Transition' ] = '-' + prefix.toLowerCase() + '-' +
+                                            'transform ' + styles.duration;
+      plot.style[ prefix + 'Transform' ] = 'scale( 0, 0 )';
+      document.body.appendChild( plot );
+      document.addEventListener( 'mousedown', function( ev ) {
+        var t = ev.target.classList; 
+        if ( !t.contains( classes.nohighlight ) ) {
+          pressed = true;
+          moveplot( ev.pageX, ev.pageY );
+          plot.style[ prefix + 'Transform' ] = 'scale( 1, 1 )';
+        }
+      }, false );
+      document.addEventListener( 'mouseup', function( ev ) {
+        pressed = false;
+        plot.style[ prefix + 'Transform' ] = 'scale( 0, 0 )';
+      },  false );
+      document.addEventListener( 'mousemove', function( ev ) {
+        if ( pressed ) { moveplot( ev.pageX, ev.pageY ); }
+      }, false );  
+      function moveplot( x, y ) {
+        plot.style.left = x - offset + 'px';
+        plot.style.top = y - offset + 'px';
+      }
+    }
+  }
+  function getprefix(elm) {
+    var prefixes = [ 'Moz', 'Webkit', 'Khtml', 'O', 'ms', '' ],
+        all = prefixes.length,
+        prefix = null;
+    while ( all-- ) {
+      if ( elm.style[ prefixes[all] + 'Transition' ] !== undefined ) {
+        prefix = prefixes[all];
+        break;
+      }
+    }
+    return prefix;
+  }
+  return { init:init };
+}();
+clickhighlight.init();
+</script>
   </body>
+</html>
+
+</body>
 </html>
