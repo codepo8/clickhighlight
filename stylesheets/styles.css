@@ -100,7 +100,7 @@ a img {border: 0;}
 p {margin-bottom: 24px;}
 .mozilla-red {color: rgb(175,50,50);}
 .img-left {float: left;}
-.bg {background: rgb(245,241,232) url('background-gradient.png') repeat-x top center;}
+.bg {background: rgb(245,241,232) url('http://icant.co.uk/talks/css/background-gradient.png') repeat-x top center;}
 
 .pad {padding: 4px;}
 
@@ -276,7 +276,7 @@ body {
 	width: 896px;
 	margin: 0px auto;
 	padding: 72px 48px 84px;
-	background: rgb(245,241,232) url('mozorg-gradient.png') repeat-x top center;
+	background: rgb(245,241,232) url('http://icant.co.uk/talks/css/mozorg-gradient.png') repeat-x top center;
 	color: rgb(60,60,60);
 	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
 }
