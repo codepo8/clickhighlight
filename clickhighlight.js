@@ -1,3 +1,10 @@
+/*
+  clickhighlight.js
+  Homepage: http://codepo8.github.com/clickhighlight/
+  Copyright (c) 2012 Christian Heilmann
+  Code licensed under the BSD License:
+  http://christianheilmann.com/license.txt
+*/
 clickhighlight = function() {
   var classes = {
     nohighlight: 'nohighlight'
